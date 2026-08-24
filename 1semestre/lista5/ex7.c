@@ -2,11 +2,11 @@
 
 #include <stdio.h>
 
-float teste (float a, float b, float c) {
+int teste (float a[], float b[], int c) {
 
-float result, i;
+int result=0, i;
 
-	for (i=0; i<c; i++) { if (a == b) { result++; } }
+	for (i=0; i<c; i++) { if (a[i] == b[i]) { result++; } }
 return result;
 }
 
@@ -44,13 +44,13 @@ for (i=0; i<quant; i++) {
 
 //Montagem dos dois vetores
 
-igual = teste(vetor[quant], vetor2[quant], quant);
+igual = teste(vetor, vetor2, quant);
 
 //chama a função
 
 	printf("\n\n=====RESULTADO=====\n\n");
 
-if (igual != quant-1) { printf("\nos vetores são diferentes!\n"); }
+if (igual != quant) { printf("\nos vetores são diferentes!\n"); }
 
 else { printf("\nos vetores são iguais!\n"); }
 
