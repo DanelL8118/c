@@ -1,31 +1,14 @@
-#include <stdio.h>
-#include <string.h>
-#include <stdlib.h>
-
-#define TAM 50
-
-typedef struct {
-
-int codigo;
-int matricula;
-float n1;
-float n2;
-float media;
-char nome[50];
-char curso[50];
-char situacao[15];
-
-} aluno;
+#include "library.h"
 
 int mostrarMenu () {
 
-int opcao=0;
+float opcao=0;
 
-    printf("\n======\nSISTEMA ACADÊMICO\n======\n[ 1 ] - CADASTRAR ALUNO\n[ 2 ] - LISTAR ALUNOS\n[ 3 ] - PESQUISAR ALUNOS\n[ 4 ] - ALTERAR DADOS DO ALUNO\n[ 5 ] - EXCLUIR ALUNO\n[ 6 ] - ESTATISTÍCAS DA TURMA\n[ 0 ] - SAIR\n\nDigite a opção que deseja: ");
-    scanf("%d", &opcao);
-        while (opcao < 0 || opcao > 6) {
+    printf("\n======\nSISTEMA ACADÊMICO\n======\n[ 1 ] - CADASTRAR ALUNO    [ 2 ] - LISTAR ALUNOS\n[ 3 ] - PESQUISAR ALUNOS   [ 4 ] - ALTERAR DADOS DO ALUNO\n[ 5 ] - EXCLUIR ALUNO      [ 6 ] - ESTATISTÍCAS DA TURMA\n[ 0 ] - SAIR\n\nDigite a opção que deseja: ");
+    scanf("%f", &opcao);
+        while (opcao < 0 || opcao > 6 || isnan(opcao) ) {
             printf("\ndigite uma opção válida: ");
-            scanf("%d", &opcao);
+            scanf("%f", &opcao);
         }
 
     return opcao;
@@ -48,19 +31,20 @@ void cadastrarAluno ( aluno docente[], int codigo ) {
 
     printf("\ndigite a nota n1 do aluno: ");
     scanf("%f", &docente[codigo].n1);
-    while (docente[codigo].n1 < 0) {        
+    while (docente[codigo].n1 < 0 || docente[codigo].n1 > 10) {        
         printf("\ndigite uma nota n1 válida: ");
         scanf("%f", &docente[codigo].n1);
         }
 
     printf("\ndigite a nota n2 do aluno: ");
     scanf("%f", &docente[codigo].n2);
-    while (docente[codigo].n2 < 0) {        
+    while (docente[codigo].n2 < 0 || docente[codigo].n1 > 10) {        
         printf("\ndigite uma nota n2 válida: ");
         scanf("%f", &docente[codigo].n2);
         }
 
-        
+    printf("\n\nAluno Cadastrado com Sucesso!\n");    
+
     docente[codigo].media = (docente[codigo].n1 + docente[codigo].n2) / 2;
         
         if (docente[codigo].media >= 6.0) { strcpy(docente[codigo].situacao, "APROVADO");}
@@ -73,14 +57,14 @@ void cadastrarAluno ( aluno docente[], int codigo ) {
 
 void listarAlunos ( aluno docente[], int tamanho) {
 
-    int codigoador=0;
+    int contador=0;
 
     printf("\n======\nLISTAR ALUNOS\n======\n");
-    printf("\nPosição      Nome          Situação       Média\n-----------------------------------------------\n");
+    printf("\nPosição     Média       Situação      Nome                                  Curso\n---------------------------------------------------------------------------------\n");
 
-    for (codigoador=0; codigoador<tamanho; codigoador++) {
+    for (contador=0; contador<tamanho; contador++) {
 
-    printf("\n%d      %s            %s      %f", codigoador+1, docente[codigoador].nome, docente[codigoador].situacao, docente[codigoador].media);
+    printf("\n%-8d    %-8.2f    %-12s  %-40s  %-20s\n", contador+1, docente[contador].media, docente[contador].situacao, docente[contador].nome, docente[contador].curso);
     }
 }
 
@@ -226,31 +210,4 @@ void estatisticasTurma (aluno turma[], int tamanho) {
 
     printf("\n======\nESTATISTÍCAS DA TURMA\n======\n");
     printf("Tamanho da turma: %d\nQuantidade de aprovados: %d\nQuantidade de reprovados: %d\nMédia geral da turma: %.2f\nAluno com maior média: %s\nAluno com menor média: %s\n", tamanho, aprovado, reprovado, mediaTurma, turma[maiorposicao].nome, turma[menorposicao].nome);
-}
-
-int main () {
-    
-int opc=0, tamanho=0;
-aluno vetor[TAM];
-
-do {
-
-opc = mostrarMenu();
-
-if (opc == 1) { cadastrarAluno(vetor, tamanho); tamanho++; }
-
-if (opc == 2) { listarAlunos(vetor, tamanho); }
-
-if (opc == 3) { pesquisarAluno(vetor, tamanho); }
-
-if (opc == 4) { alterarAluno(vetor, tamanho); }
-
-if (opc == 5) { excluirAluno(vetor, tamanho); }
-
-if (opc == 6) { estatisticasTurma(vetor, tamanho); }
-
-} while (opc != 0);
-
-return 0;
-
 }
