@@ -11,6 +11,7 @@ typedef struct {
 
 int codigo;
 int matricula;
+int cadastro;
 float n1;
 float n2;
 float media;

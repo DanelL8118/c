@@ -35,11 +35,12 @@ void limitar (int *valor, int minimo, int maximo) {
 
 int main(void) {
 
-    int nota = 150;
+int nota = 150;
 
-        limitar (&nota, 0, 100);
-        printf("\nnota = %d\n", nota); //esperado: 100
+    limitar (&nota, 0, 100);
 
-    return 0;
+printf("\nnota = %d\n", nota); //esperado: 100
+
+return 0;
 
 }

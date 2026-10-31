@@ -11,7 +11,7 @@ do {
 
     if (opc == 1) { cadastrarAluno(vetor, tamanho); tamanho++; }
 
-    if (tamanho == 0 && opc != 0) { printf("\nNenhum aluno cadastrado ainda! tente novamente"); }
+    if (tamanho == 0 && opc != 0) { printf("\nNenhum aluno cadastrado ainda! tente novamente\n"); }
 
     else {
 

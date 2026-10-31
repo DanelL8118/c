@@ -19,13 +19,13 @@ return 0;
 
 int main () {
 
-    int a = 10, b = 20;
-    int *p = &a;
+int a = 10, b = 20;
+int *p = &a;
 
-    *p = 30; //adicionado * para que seja considerado ponteiro
-     p = &b; //adicionado & para receber um endereço de variável
+*p = 30; //adicionado * para que seja considerado ponteiro
+p = &b; //adicionado & para receber um endereço de variável
 
-        printf("a = %d, *p = %d\n", a, *p);
+printf("a = %d, *p = %d\n", a, *p);
 
 return 0;
 
