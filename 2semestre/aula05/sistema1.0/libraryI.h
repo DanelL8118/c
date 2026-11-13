@@ -1,5 +1,5 @@
-#ifndef LIBRARY_H
-#define LIBRARY_H
+#ifndef LIBRARYI_H
+#define LIBRARYI_H
 
 #include <stdio.h>
 #include <string.h>

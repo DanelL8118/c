@@ -1,10 +1,10 @@
-#include "library.h"
+#include "libraryI.h"
 
 int mostrarMenu () {
 
 float opcao=0;
 
-printf("\n======\nSISTEMA ACADÊMICO\n======\n[ 1 ] - CADASTRAR ALUNO    [ 2 ] - LISTAR ALUNO\n[ 3 ] - PESQUISAR ALUNO   [ 4 ] - ALTERAR DADOS DO ALUNO\n[ 5 ] - EXCLUIR ALUNO      [ 6 ] - ESTATISTÍCAS DA TURMA\n[ 0 ] - SAIR\n\nDigite a opção que deseja: ");
+printf("\n======\nSISTEMA ACADÊMICO\n======\n[ 1 ] - CADASTRAR ALUNO    [ 2 ] - LISTAR ALUNOS\n[ 3 ] - PESQUISAR ALUNOS   [ 4 ] - ALTERAR DADOS DO ALUNO\n[ 5 ] - EXCLUIR ALUNO      [ 6 ] - ESTATISTÍCAS DA TURMA\n[ 0 ] - SAIR\n\nDigite a opção que deseja: ");
 scanf("%f", &opcao);
     while (opcao < 0 || opcao > 6 || isnan(opcao) ) {
         printf("\ndigite uma opção válida: ");
@@ -14,47 +14,47 @@ scanf("%f", &opcao);
 return opcao;
 }
 
-void cadastrarAluno (aluno *docente) {
+void cadastrarAluno ( aluno docente[], int codigo ) {
 
 int cod=1;
 
 printf("\n======\nCADASTRAR ALUNO\n======\n");
 
 printf("\ndigite o nome do aluno: ");
-scanf(" %[^\n]", docente->nome);
+scanf(" %[^\n]", docente[codigo].nome);
 
 printf("\ndigite o curso do aluno: ");
-scanf(" %[^\n]", docente->curso);
+scanf(" %[^\n]", docente[codigo].curso);
 
 printf("\ndigite a matricula do aluno: ");
-scanf("%d", &docente->matricula);
+scanf("%d", &docente[codigo].matricula);
 
 printf("\ndigite a nota n1 do aluno: ");
-scanf("%f", &docente->n1);
-    while ( docente->n1 < 0 || docente->n1 > 10) {        
+scanf("%f", &docente[codigo].n1);
+    while (docente[codigo].n1 < 0 || docente[codigo].n1 > 10) {        
         printf("\ndigite uma nota n1 válida: ");
-        scanf("%f", &docente->n1);
+        scanf("%f", &docente[codigo].n1);
         }
 
 printf("\ndigite a nota n2 do aluno: ");
-scanf("%f", &docente->n2);
-    while ( docente->n2 < 0 || docente->n1 > 10) {        
+scanf("%f", &docente[codigo].n2);
+    while (docente[codigo].n2 < 0 || docente[codigo].n1 > 10) {        
         printf("\ndigite uma nota n2 válida: ");
-        scanf("%f", &docente->n2);
+        scanf("%f", &docente[codigo].n2);
         }
 
 printf("\n\nAluno Cadastrado com Sucesso!\n");    
 
-docente->media = (docente->n1 + docente->n2) / 2;
-    if (docente->media >= 6.0) { strcpy(docente->situacao, "APROVADO");}
-    else { strcpy(docente->situacao, "REPROVADO"); }
+docente[codigo].media = (docente[codigo].n1 + docente[codigo].n2) / 2;
+    if (docente[codigo].media >= 6.0) { strcpy(docente[codigo].situacao, "APROVADO");}
+    else { strcpy(docente[codigo].situacao, "REPROVADO"); }
     
-docente->cadastro = 1;
-docente->codigo = cod;
-cod++;
+docente[codigo].cadastro = 1;
+docente[codigo].codigo = codigo;
+codigo++;
 }
 
-void listarAlunos (aluno docente[], int tamanho) {
+void listarAlunos ( aluno docente[], int tamanho) {
 
 int contador=0;
 
